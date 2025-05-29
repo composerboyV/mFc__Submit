@@ -12,10 +12,10 @@
 IMPLEMENT_DYNAMIC(CDrawDlg, CDialogEx)
 
 CDrawDlg::CDrawDlg(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_CDrawDlg, pParent)
-	,m_nClickCount(0)
-	,m_nRadius(5) 
-	,m_bImageInitialized(false)
+    : CDialogEx(IDD_CDrawDlg, pParent)
+    , m_nClickCount(0)
+    , m_nRadius(5)
+    , m_bImageInitialized(false)
     , m_nLineThickness(2)
     , m_nCurrentRadius(0)
     , m_bDragging(false)
@@ -25,7 +25,6 @@ CDrawDlg::CDrawDlg(CWnd* pParent /*=nullptr*/)
     , m_bRandomRunning(false)
     , m_nCurrentThreadId(0)
 {
-
 }
 
 CDrawDlg::~CDrawDlg()
@@ -36,7 +35,7 @@ CDrawDlg::~CDrawDlg()
 
 void CDrawDlg::DoDataExchange(CDataExchange* pDX)
 {
-	CDialogEx::DoDataExchange(pDX);
+    CDialogEx::DoDataExchange(pDX);
 }
 
 BEGIN_MESSAGE_MAP(CDrawDlg, CDialogEx)
@@ -58,8 +57,8 @@ void CDrawDlg::InitDrawing()
 {
     if (!m_image.IsNull())
         m_image.Destroy();
-    int nWidth = GetSystemMetrics(SM_CXSCREEN) * 8/10;
-    int nHeight = GetSystemMetrics(SM_CYSCREEN) * 9/10;
+    int nWidth = GetSystemMetrics(SM_CXSCREEN) * 8 / 10;
+    int nHeight = GetSystemMetrics(SM_CYSCREEN) * 9 / 10;
     int nBpp = 8;
 
     m_image.Create(nWidth, -nHeight, nBpp);
@@ -203,7 +202,7 @@ void CDrawDlg::DrawCircleOutline(CPoint center, int radius, unsigned char color,
             x++;
             if (d > 0)
                 d = d + 4 * (x - --y) + 10;
-            else 
+            else
                 d = d + 4 * x + 6;
             DrawCircle8Points(fm, nPitch, nWidth, nHeight, center.x, center.y, x, y, color);
         }
@@ -292,7 +291,7 @@ void CDrawDlg::ResetDrawing()
     m_nDragPointIndex = -1;
     m_ptCircleCenter = CPoint(0, 0);
     m_nCircleRadius = 0;
-    
+
     m_allClickedPoints.RemoveAll();
     StopRandomMovement();
     InitDrawing();
@@ -325,10 +324,8 @@ void CDrawDlg::RandomThreadProc(CDrawDlg* pThis, int threadId)
     while (count < 10) {
         if (!::IsWindow(pThis->GetSafeHwnd()))
             break;
-
         if (!pThis->m_bRandomRunning.load())
             break;
-
         if (threadId != pThis->m_nCurrentThreadId.load())
             break;
         pThis->PostMessage(WM_USER + 1);

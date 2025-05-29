@@ -20,15 +20,15 @@ class CAboutDlg : public CDialogEx
 public:
 	CAboutDlg();
 
-// 대화 상자 데이터입니다.
+	// 대화 상자 데이터입니다.
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_ABOUTBOX };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 지원입니다.
 
-// 구현입니다.
+	// 구현입니다.
 protected:
 	DECLARE_MESSAGE_MAP()
 };
@@ -107,21 +107,22 @@ BOOL CMFCDlg::OnInitDialog()
 
 	int screenWidth = GetSystemMetrics(SM_CXSCREEN);
 	int screenHeight = GetSystemMetrics(SM_CYSCREEN);
+
 	MoveWindow(0, 0, screenWidth, screenHeight);
 
 	m_pDrawDlg = new CDrawDlg;
 	if (m_pDrawDlg->Create(IDD_CDrawDlg, this)) {
 		int dialogWidth = screenWidth * 4 / 5;
 		int dialogHeight = screenHeight * 9 / 10;
+
 		m_pDrawDlg->MoveWindow(0, 0, dialogWidth - 20, dialogHeight - 50);
 		m_pDrawDlg->ShowWindow(SW_SHOW);
+
 		int rightAreaX = screenWidth * 4 / 5 + 10;
 		int rightAreaWidth = screenWidth / 5 - 20;
 		int rightAreaHeight = screenHeight - 100;
 		int yPos = 10;
 		CFont	font;
-		font.CreatePointFont(140, _T("맑은 고딕"));
-
 
 		int labelHeight = 30;
 		int editHeight = 35;
@@ -279,9 +280,8 @@ HCURSOR CMFCDlg::OnQueryDragIcon()
 
 void CMFCDlg::OnBnClickedReset()
 {
-	if (m_pDrawDlg) {
+	if (m_pDrawDlg)
 		m_pDrawDlg->ResetDrawing();
-	}
 }
 
 void CMFCDlg::OnBnClickedCancel()
@@ -312,9 +312,8 @@ void CMFCDlg::OnStnClickedSpot1()
 
 void CMFCDlg::OnBnClickedRandom()
 {
-	if (m_pDrawDlg) {
+	if (m_pDrawDlg)
 		m_pDrawDlg->TriggerRandomMovement();
-	}
 }
 
 LRESULT CMFCDlg::OnUpdateCoordinates(WPARAM wParam, LPARAM lParam)
@@ -350,12 +349,10 @@ void CMFCDlg::OnEnChangeEditRadius()
 
 	if (!str.IsEmpty()) {
 		int value = _ttoi(str);
-		if (value < 1 || value > 50) {
-			GetDlgItem(IDC_STATIC_RADIUS_LABEL)->SetWindowText(_T("기준점 반지름 (1-50 사이 값 입력해야 합니다 !)"));
-		}
-		else {
+		if (value < 1 || value > 50)
+			GetDlgItem(IDC_STATIC_RADIUS_LABEL)->SetWindowText(_T("기준점 반지름 (1-50 사이 값 입력해야 합니다 !!)"));
+		else
 			GetDlgItem(IDC_STATIC_RADIUS_LABEL)->SetWindowText(_T("기준점 반지름: "));
-		}
 	}
 }
 
@@ -366,12 +363,10 @@ void CMFCDlg::OnEnChangeEditThickness()
 
 	if (!str.IsEmpty()) {
 		int value = _ttoi(str);
-		if (value < 1 || value > 10) {
-			GetDlgItem(IDC_STATIC_THICKNESS_LABEL)->SetWindowText(_T("선 두께 (1-10 사이 값 필요합니다!)"));
-		}
-		else {
+		if (value < 1 || value > 10)
+			GetDlgItem(IDC_STATIC_THICKNESS_LABEL)->SetWindowText(_T("선 두께 (1-10 사이 값 필요합니다!!)"));
+		else
 			GetDlgItem(IDC_STATIC_THICKNESS_LABEL)->SetWindowText(_T("선 두께: "));
-		}
 	}
 }
 
