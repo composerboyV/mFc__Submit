@@ -96,12 +96,6 @@ void CDrawDlg::OnLButtonDown(UINT nFlags, CPoint point)
             m_nDragPointIndex = pointIndex;
             return;
         }
-        else {
-            DrawCirclePoint(point, m_nRadius);
-            m_allClickedPoints.AddTail(point);
-            Invalidate(FALSE);
-            return;
-        }
     }
     if (m_nClickCount < 3) {
         m_ptClick[m_nClickCount] = point;
@@ -115,10 +109,6 @@ void CDrawDlg::OnLButtonDown(UINT nFlags, CPoint point)
                 UpdateCoordinateDisplay();
             }
         }
-        Invalidate(FALSE);
-    }
-    else {
-        DrawCirclePoint(point, m_nRadius);
         Invalidate(FALSE);
     }
     CDialogEx::OnLButtonDown(nFlags, point);
@@ -150,8 +140,6 @@ void CDrawDlg::OnMouseMove(UINT nFlags, CPoint point)
         int count = 0;
         while (pos) {
             CPoint additionalPoint = m_allClickedPoints.GetNext(pos);
-
-            // 첫 3개 점은 이미 그렸으므로 스킵
             if (count >= 3) {
                 DrawCirclePoint(additionalPoint, m_nRadius);
             }

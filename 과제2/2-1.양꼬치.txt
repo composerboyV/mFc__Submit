@@ -1,0 +1,18 @@
+#include <string>
+#include <vector>
+
+using namespace std;
+
+int solution(int n, int k) {
+    int answer = 0;
+    int tmp = n;
+    while (tmp >= 10)
+    {
+        tmp -= 10;
+        k--;
+        if (tmp < 10)
+            break ;
+    }
+    answer = (n * 12000) + (k * 2000);
+    return answer;
+}

@@ -351,10 +351,10 @@ void CMFCDlg::OnEnChangeEditRadius()
 	if (!str.IsEmpty()) {
 		int value = _ttoi(str);
 		if (value < 1 || value > 50) {
-			GetDlgItem(IDC_STATIC_RADIUS_LABEL)->SetWindowText(_T("반지름 (1-50 사이 값 입력해야 합니다 !)"));
+			GetDlgItem(IDC_STATIC_RADIUS_LABEL)->SetWindowText(_T("기준점 반지름 (1-50 사이 값 입력해야 합니다 !)"));
 		}
 		else {
-			GetDlgItem(IDC_STATIC_RADIUS_LABEL)->SetWindowText(_T("반지름: "));
+			GetDlgItem(IDC_STATIC_RADIUS_LABEL)->SetWindowText(_T("기준점 반지름: "));
 		}
 	}
 }
@@ -370,7 +370,7 @@ void CMFCDlg::OnEnChangeEditThickness()
 			GetDlgItem(IDC_STATIC_THICKNESS_LABEL)->SetWindowText(_T("선 두께 (1-10 사이 값 필요합니다!)"));
 		}
 		else {
-			GetDlgItem(IDC_STATIC_THICKNESS_LABEL)->SetWindowText(_T("선 두께:"));
+			GetDlgItem(IDC_STATIC_THICKNESS_LABEL)->SetWindowText(_T("선 두께: "));
 		}
 	}
 }
