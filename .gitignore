@@ -24,10 +24,9 @@ ipch/
 *.idb
 *.exe
 *.ilk
-*.sln
 *.recipe
 *.filters
 *.vcxproj
 Debug/
 Release/
-x64/
+
